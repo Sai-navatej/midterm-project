@@ -1,4 +1,3 @@
-
 const overlay = document.getElementById('overlay');
 const openTimerBtn = document.getElementById('openTimerBtn');
 const closeBtn = document.getElementById('closeBtn');
@@ -54,26 +53,38 @@ function closeModal() {
 
 function startTimer() {
   if (running || remainingSeconds <= 0) return;
+
   running = true;
+
   intervalId = setInterval(() => {
     remainingSeconds -= 1;
+
     if (remainingSeconds <= 0) {
       remainingSeconds = 0;
       updateUI();
       stopTimer();
-const sound = document.getElementById('finishSound');
-if (sound) {
-  sound.currentTime = 0;
-  sound.play().catch(() => {
 
-  });
-}
-alert('Timer finished!');
+      const sound = document.getElementById('finishSound');
+      if (sound) {
+        sound.currentTime = 0;
+        sound.play().catch(() => {});
+      }
+
+      alert('Timer finished!');
+
+      if (sound) {
+        try {
+          sound.pause();
+          sound.currentTime = 0;
+        } catch (e) {}
+      }
 
       return;
     }
+
     updateUI();
   }, 1000);
+
   updateUI();
 }
 
@@ -88,7 +99,10 @@ function stopTimer() {
 
 openTimerBtn.addEventListener('click', openModal);
 closeBtn.addEventListener('click', closeModal);
-overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+
+overlay.addEventListener('click', (e) => {
+  if (e.target === overlay) closeModal();
+});
 
 applyTimeBtn.addEventListener('click', () => {
   totalSeconds = Math.max(0, parseInt(secondsInput.value, 10) || 0);
