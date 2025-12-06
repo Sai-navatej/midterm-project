@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Midterm: Simple Countdown Timer</title>
+
+  <link rel="stylesheet" href="midterm.css">
+</head>
+<body>
+
+  <button class="open-button" id="openTimerBtn">Open Timer</button>
+
+  <div class="overlay" id="overlay" aria-hidden="true">
+    <div class="card" role="dialog" aria-modal="true" aria-labelledby="title">
+      <button class="close-btn" id="closeBtn" aria-label="Close">✕</button>
+
+      <h1 id="title">Countdown Timer</h1>
+      <p class="lead">Type seconds or use to upside/downside arows to add or remove 1 minute. Press Start to run the timer.</p>
+
+      <div class="row">
+        <label for="secondsInput">Seconds:</label>
+        <input id="secondsInput" type="number" min="0" value="60" />
+        <button id="applyTime" class="apply-btn" type="button">Apply</button>
+      </div>
+
+      <div class="timer-area">
+        <div class="circle" aria-hidden="true">
+          <div>
+            <div id="timeDisplay" class="time-large">01:00</div>
+            <div class="small">Remaining</div>
+          </div>
+        </div>
+
+        <div class="arrow-column" aria-hidden="true">
+          <button id="increaseBtn" class="arrow" type="button" title="Add 1 minute">▲</button>
+          <button id="decreaseBtn" class="arrow" type="button" title="Remove 1 minute">▼</button>
+        </div>
+      </div>
+
+      <div class="progress" aria-hidden="true">
+        <div id="progressBar" class="bar"></div>
+      </div>
+
+      <div class="controls">
+        <button id="startBtn" class="btn start" type="button">Start</button>
+        <button id="pauseBtn" class="btn pause" type="button">Pause</button>
+        <button id="resetBtn" class="btn reset" type="button">Reset</button>
+      </div>
+    </div>
+  </div>
+<audio id="finishSound" src="beep.mp3" preload="auto"></audio>
+
+  <script src="midterm.js"></script>
+</body>
+</html>
